@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style> table {font-size: large;}</style>
+    <title>Song List</title>
+</head>
+<body>
+    <div class="container">
+    <!-- Use EJS to receive and format the SQLite Data -->
+    <h1>Song List</h1>
+    <% {console.log("listing songs: " + songs.length);} %>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <!-- Add a form and button to go to add a song route -->
+                    <form method="GET" action="\addSong">
+                        <input type="submit" value="Add Song">
+                    </form>
+                </th>
+                <th >Title</th>
+                <th >Artist</th>
+                <th >Release Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- EJS loop to create a table row for each song -->
+            <% for(var i=0;i<songs.length;i++) { %>
+                <tr>
+                    <td>
+                        <!-- form and button to edit song -->
+                        <form action="/editSong/<%= songs[i].id %>"  
+                            method="get" id="editSong" name="editSong">
+                            <input type="submit" name="Edit" 
+                                value="Edit">
+                        </form>
+                    </td>
+                    <td><%=songs[i].title %></td>
+                    <td><%=songs[i].artist %></td>
+                    <td><%=songs[i].releaseYear %></td>
+                    <td>
+                        <!-- Add a form and button on each row to bring up the safe delete process -->
+                        <form action="/deleteSong/<%= songs[i].id %>"
+                            method="post" id="deleteSong<%=songs[i].id%>" 
+                            name="deleteSong<%=songs[i].id%>">
+                            <input type="button" name="Delete" 
+                                value="Delete" onclick="safeDelete('deleteSong<%=songs[i].id%>')">
+                        </form>
+                    </td>
+                </tr>
+            <%}%>    
+        </tbody>
+    </table>
+
+    </div>
+
+    <script>
+        /*** mercy before deleting a song  ***/
+        function safeDelete(deleteSong) {
+            console.log("passed to safeDelete: " + deleteSong);
+            let yesNo = confirm("Are you sure?");
+            if (yesNo === true) {
+                console.log("submitting delete: " + deleteSong);
+                document.forms[deleteSong].submit();
+            }
+        }
+    </script>
+</body>
+</html>
