@@ -1,20 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Add Song</title>
-</head>
- <body>
-    <form action="/addSong" method="POST">
-        <label for="Title">Enter Song Title:</label>
-        <input id="Title" type="text" name="Title">
-        <br>
-        <label for="Artist">Enter Artist Name:</label>
-        <input id="Artist" type="text" name="Artist">
-        <br>
-        <label for="ReleaseYear">Release Year?</label>
-        <input id="ReleaseYear" type="text" name="ReleaseYear">
-        <br>
-        <input type="submit" value="Save">
-    </form>
- </body>
+    <head>
+        <title>Add Song</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand&display=swap" rel="stylesheet">
+        <style>
+            /*font-family: 'Open Sans', sans-serif;
+            font-family: 'Quicksand', sans-serif; 
+            purple blue: #5327F2
+            bright blue: #0511F2
+            medium blue: #030BA6
+            dark blue: #020873
+            navy blue: #010440
+            */
+            body {
+                background-color: #010440;
+                color: #fff;
+            }
+            h1 {
+                background-color: #5327F2;
+                color: #fff;
+                font-family: 'Quicksand', sans-serif; 
+                font-weight: bolder;
+                text-align: center;
+                font-size: 3rem;
+                border: 0.4rem solid white;
+                max-width: 25rem;
+            }
+            main {
+                background-color: #fff;
+                color: #111;
+                font-family: 'Open Sans', sans-serif;
+                padding: 3rem;
+                max-width: 50rem;
+                margin: 2rem;
+                border: 0.25rem solid #5327F2;
+            }
+            form {
+                display: inline;
+            }
+            div {
+                padding-left: 2rem;
+            }
+            input[type="submit"] {
+                font-family: 'Open Sans', sans-serif;
+                background-color: #fff;
+                color: #5327F2;
+                text-transform: uppercase;
+                border: 2px solid #5327F2;
+                font-weight: bold;
+                font-size: 0.975rem;
+                border-radius: 0.2rem;
+                padding: 0.25rem;
+                transition: color 300ms ease-in, border 300ms ease-in, background-color 300ms ease-in;
+            }
+            input[type="submit"]:hover {
+                background-color: #5327F2;
+                color: white;
+                border: 2px solid #111;
+            }
+            .save {
+                margin-left: 2rem;
+                margin-right: 10rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Add Song</h1>
+    <main>
+        <form action="/addSong" method="POST">
+            <div class="main">
+                <label for="Title">Enter Song Title:</label>
+                <input id="Title" type="text" name="Title">
+                <br><br>
+                <label for="Artist">Enter Artist Name:</label>
+                <input id="Artist" type="text" name="Artist">
+                <br><br>
+                <label for="ReleaseYear">Release Year:</label>
+                <input id="ReleaseYear" type="text" name="ReleaseYear">
+            </div>  
+            <br><br>
+            <input class="save" type="submit" value="Save">
+        </form>
+        <form action="\"><input class="cancel" type="submit" value="Cancel"></form>
+    </main>
+    </body>
 </html>
