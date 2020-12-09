@@ -6,19 +6,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style> table {font-size: large;}</style>
     <title>Song List</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Quicksand&display=swap" rel="stylesheet">
+        <style>
+            /*font-family: 'Open Sans', sans-serif;
+            font-family: 'Quicksand', sans-serif; 
+            purple blue: #5327F2
+            bright blue: #0511F2
+            medium blue: #030BA6
+            dark blue: #020873
+            navy blue: #010440
+            */
+            body {
+                background-color: #020873;
+                color: #fff;
+            }
+            h1 {
+                background-color: #0511F2;
+                color: #fff;
+                font-family: 'Quicksand', sans-serif; 
+                font-weight: bolder;
+                text-align: center;
+                font-size: 3rem;
+                border: 0.4rem solid white;
+                max-width: 25rem;
+            }
+            .container {
+                background-color: #fff;
+                color: #111;
+                font-family: 'Open Sans', sans-serif;
+                padding: 3rem;
+                max-width: 65rem;
+                min-width: 45rem;
+                margin: 2rem;
+                border: 0.25rem solid #010440;
+            }
+         input[type="submit"], input[type="button"] {
+                font-family: 'Open Sans', sans-serif;
+                background-color: #fff;
+                color: #0511F2;
+                text-transform: uppercase;
+                border: 2px solid #0511F2;
+                font-weight: bold;
+                font-size: 0.975rem;
+                border-radius: 0.2rem;
+                padding: 0.25rem;
+                transition: color 300ms ease-in, border 300ms ease-in, background-color 300ms ease-in;
+            }
+
+            .add input[type="submit"], .edit input[type="submit"], .delete input[type="button"] {
+            font-size: 0.75rem;
+            padding: 0.2rem;
+            color: #010440;
+            border: 2px solid #010440;
+            border-radius: 0.1rem;
+            } 
+
+            input[type="submit"]:hover, input[type="button"]:hover {
+                background-color: #020873;
+                color: white;
+                border: 2px solid #111;
+            }
+
+
+            table th{
+                font-weight: bolder;
+                font-size: 1.3rem;
+                color: #010440;
+                padding: 1rem;
+            }
+
+            table td {
+                font-size: 1.0rem;
+                padding: 0.8rem;
+            }
+        </style>
 </head>
 <body>
+    <h1>Song List</h1>
     <div class="container">
     <!-- Use EJS to receive and format the SQLite Data -->
-    <h1>Song List</h1>
     <% {console.log("listing songs: " + songs.length);} %>
     <table class="table table-hover">
         <thead>
             <tr>
                 <th>
                     <!-- Add a form and button to go to add a song route -->
-                    <form method="GET" action="\addSong">
-                        <input type="submit" value="Add Song">
+                    <form method="GET" action="\addSong" class="add">
+                        <input type="submit" class="add" value="Add Song">
                     </form>
                 </th>
                 <th >Title</th>
@@ -33,7 +108,7 @@
                     <td>
                         <!-- form and button to edit song -->
                         <form action="/editSong/<%= songs[i].id %>"  
-                            method="get" id="editSong" name="editSong">
+                            method="get" id="editSong" name="editSong" class="edit">
                             <input type="submit" name="Edit" 
                                 value="Edit">
                         </form>
@@ -45,7 +120,8 @@
                         <!-- Add a form and button on each row to bring up the safe delete process -->
                         <form action="/deleteSong/<%= songs[i].id %>"
                             method="post" id="deleteSong<%=songs[i].id%>" 
-                            name="deleteSong<%=songs[i].id%>">
+                            name="deleteSong<%=songs[i].id%>"
+                            class="delete">
                             <input type="button" name="Delete" 
                                 value="Delete" onclick="safeDelete('deleteSong<%=songs[i].id%>')">
                         </form>
