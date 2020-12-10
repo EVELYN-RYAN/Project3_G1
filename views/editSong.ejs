@@ -61,8 +61,8 @@
  <body>
      <h1>Edit Song</h1>
      <main>
-        <form action="/editSong" method="POST">
-            <div class="main">
+         <div class="main">
+            <form action="/editSong" method="POST" id="edit">
                 <input id="SongId" type="hidden" name="SongId" value="<%=songs[0].id %>">
                 <label for="Title">Enter Song Title:</label>
                 <input id="Title" type="text" name="Title">
@@ -73,9 +73,12 @@
                 <label for="ReleaseYear">Release Year?</label>
                 <input id="ReleaseYear" type="text" name="ReleaseYear">
                 <br><br>
-                <input type="submit" value="Edit">
-            </div>
-        </form>
+                <input for="edit" type="submit" value="Save">
+            </form>
+            <form action='/' method="GET" id="cancel">
+                <input for="cancel" type="submit" value="Cancel">
+            </form>
+        </div>          
     </main>
  </body>
 </html>
