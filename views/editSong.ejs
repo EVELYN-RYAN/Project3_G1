@@ -61,18 +61,21 @@
  <body>
      <h1>Edit Song</h1>
      <main>
-    <form action="/editSong" method="POST">
-        <label for="Title">Enter Song Title:</label>
-        <input id="Title" type="text" name="Title">
-        <br><br>
-        <label for="Artist">Enter Artist Name:</label>
-        <input id="Artist" type="text" name="Artist">
-        <br><br>
-        <label for="ReleaseYear">Release Year?</label>
-        <input id="ReleaseYear" type="text" name="ReleaseYear">
-        <br><br>
-        <input type="submit" value="Edit">
-    </form>
+        <form action="/editSong" method="POST">
+            <div class="main">
+                <input id="SongId" type="hidden" name="SongId" value="<%=songs[0].id %>">
+                <label for="Title">Enter Song Title:</label>
+                <input id="Title" type="text" name="Title">
+                <br><br>
+                <label for="Artist">Enter Artist Name:</label>
+                <input id="Artist" type="text" name="Artist">
+                <br><br>
+                <label for="ReleaseYear">Release Year?</label>
+                <input id="ReleaseYear" type="text" name="ReleaseYear">
+                <br><br>
+                <input type="submit" value="Edit">
+            </div>
+        </form>
     </main>
  </body>
 </html>
