@@ -77,7 +77,27 @@ app.post('/editSong',(req, res) => {
                 res.status(500).json({err}); 
             })
     });
+app.get('/addBatch', (req,res) =>{
+    knex('Songs').insert(
+        [
+            {title: 'Bohemian Rhapsody', artist: 'QUEEN' , releaseYear: 1975},
+            {title: "Don't Stop Believin'", artist: 'JOURNEY' , releaseYear: 1981},
+            {title: 'Hey Jude', artist: 'THE BEATLES' , releaseYear: 1968},
+        ]
+    ).then(songs =>{
+        res.redirect('/');
+    });
+});
 
+app.get('/startOver',(req,res) => {
+    knex('Songs').del()
+        .then(songs => {
+            res.redirect ('/addBatch');
+        }).catch(err => {
+            console.log(err);
+            res.status(500).json({err});
+        })
+});
 
     /*  set up a route for a POST request */
 app.post('/getform',function(req,res) {
