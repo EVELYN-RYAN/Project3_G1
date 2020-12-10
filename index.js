@@ -62,11 +62,11 @@ app.get('/editSong/:id',(req, res) => {
 });
 
 app.post('/editSong',(req, res) => {
-    knex('Songs').where({id: req.body.id}).update({
-        id: req.body.id, title: req.body.title,
-        artist: req.body.artist, releaseYear: req.body.releaseYear })
-        .then( hymn => { res.redirect('/fleetList'); })
-    }); 
+    knex('Songs').where({'id': req.body.SongId}).update({
+        id: req.body.SongId, title: req.body.Title,
+        artist: req.body.Artist, releaseYear: req.body.ReleaseYear })
+        .then( hymn => { res.redirect('/'); })
+}); 
 
     app.post('/deleteSong/:id',(req, res) => {
         knex('Songs').where('id',req.params.id).del()
