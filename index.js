@@ -38,7 +38,7 @@ app.get("/",function(req, res) {
         .catch(err => {
             console.log(err);
             res.status(500).json({err});
-        });
+    });
 });
 
 app.get('/addSong', (req,res) => {
@@ -46,19 +46,22 @@ app.get('/addSong', (req,res) => {
 });
 
 app.post('/addSong',(req, res) => {
+    console.log(req.body)
     knex('Songs').insert(req.body).then( songs => {
         res.redirect('/');  //change to a different route
     })      
 });
 
 app.get('/editSong/:id',(req, res) => {
+    console.log(req.params.id)
     knex('Songs').where('id',req.params.id)
         .then(results => {
+            console.log(results)
             res.render("editSong",{songs: results});
         }).catch(err => {
             console.log(err);
             res.status(500).json({err}); 
-        });
+    });
 });
 
 app.post('/editSong',(req, res) => {
@@ -87,6 +90,7 @@ app.get('/addBatch', (req,res) =>{
     ).then(songs =>{
         res.redirect('/');
     });
+
 });
 
 app.get('/startOver',(req,res) => {
@@ -99,7 +103,7 @@ app.get('/startOver',(req,res) => {
         })
 });
 
-    /*  set up a route for a POST request */
+/*  set up a route for a POST request */
 app.post('/getform',function(req,res) {
     console.log("POST /getform");
     res.redirect("/getform");
