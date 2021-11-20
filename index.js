@@ -70,7 +70,7 @@ app.post('/editSong',(req, res) => {
         artist: req.body.Artist, releaseYear: req.body.ReleaseYear })
         .then( hymn => { res.redirect('/'); })
 }); 
-
+    // deletesong is just a post
     app.post('/deleteSong/:id',(req, res) => {
         knex('Songs').where('id',req.params.id).del()
             .then(songs => {
@@ -80,6 +80,8 @@ app.post('/editSong',(req, res) => {
                 res.status(500).json({err}); 
             })
     });
+
+    // Set page to original 
 app.get('/addBatch', (req,res) =>{
     knex('Songs').insert(
         [
@@ -92,25 +94,13 @@ app.get('/addBatch', (req,res) =>{
     });
 
 });
-
+// Initiate route to clearing all Rows
 app.get('/startOver',(req,res) => {
     knex('Songs').del()
         .then(songs => {
-            res.redirect ('/addBatch');
+            res.redirect ('/addBatch'); //redirect to adding originals
         }).catch(err => {
             console.log(err);
             res.status(500).json({err});
         })
 });
-
-/*  set up a route for a POST request */
-app.post('/getform',function(req,res) {
-    console.log("POST /getform");
-    res.redirect("/getform");
-});
-    
-    /* set up route for a GET request */
-    app.get('/getform',function(req,res) {
-        console.log("GET /getform");
-        res.render('getpost');
-    });

@@ -61,6 +61,7 @@
  <body>
      <h1>Edit Song</h1>
      <main>
+         <!---first button option for saving-->
          <div class="main">
             <form action="/editSong" method="POST" id="edit">
                 <input id="SongId" type="hidden" name="SongId" value="<%=songs[0].id %>">
@@ -75,6 +76,7 @@
                 <br><br>
                 <input for="edit" type="submit" value="Save">
             </form>
+            <!--- second button to submit back to index.ejs--->
             <form action='/' method="GET" id="cancel">
                 <input for="cancel" type="submit" value="Cancel">
             </form>
